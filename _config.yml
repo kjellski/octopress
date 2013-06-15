@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://kjellski.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: iksllejk
+subtitle: A master of none, jack of all trades...
+author: Kjell Otto
 simple_search: http://google.com/search
-description:
+description: This blog aims to reach myself, I want this to be a place for remembering things that I've discovered on my way to any kind of mastery... 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -31,7 +31,7 @@ permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public
 plugins: plugins
-code_dir: downloads/code
+code_dir: code
 category_dir: blog/categories
 markdown: rdiscount
 rdiscount:
@@ -63,17 +63,17 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
-github_repo_count: 0
+github_user: kjellski
+github_repo_count: 10
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: kjellski
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
@@ -90,7 +90,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: kjellski
 disqus_show_comment_count: false
 
 # Google Analytics

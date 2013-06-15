@@ -4,6 +4,12 @@
 [submodule ".themes/fabric"]
 	path = .themes/fabric
 	url = git://github.com/panks/fabric.git
+[submodule ".themes/cleanpress"]
+	path = .themes/cleanpress
+	url = git@github.com:kjellski/cleanpress.git
 [submodule ".themes/slash"]
 	path = .themes/slash
-	url = git://github.com/tommy351/Octopress-Theme-Slash.git
+	url = git@github.com:kjellski/Octopress-Theme-Slash.git
+[submodule ".themes/foxslide"]
+	path = .themes/foxslide
+	url = git@github.com:kjellski/foxslide.git
