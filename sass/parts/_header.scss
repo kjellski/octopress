@@ -1,14 +1,16 @@
 $header-height: 30px;
+$header-border-height: 1px;
 
 #header{
-	height: $header-height;
-	padding: 30px 0;
-	border-bottom: 1px solid $color-gray04;
+	// height: $header-height;
+	padding-top: 30px;
+	border-bottom: $header-border-height solid $color-gray04;
 	line-height: $header-height;
+	// overflow: auto;
 	@media screen and (max-width: 1040px){
 		height: auto;
 		position: relative;
-		padding-bottom: 10px;
+		padding-bottom: 10px; 
 	}
 	a{
 		color: $color-gray01;
@@ -29,6 +31,7 @@ $header-height: 30px;
 #main-nav{
 	float: left;
 	margin-left: 30px;
+	padding-bottom: 8px;
 	@media screen and (max-width: 1040px){
 		float: none;
 		margin-left: 0;

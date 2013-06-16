@@ -8,11 +8,13 @@ categories:
 - design
 - setup
 - blogging
+- css
 - scss
 - custom
 ---
 This post has two parts, the intro for what has been done and the Meat part that contains the usefull stuff.
-## Intro ##
+
+# Intro #
 
 Yesterday, my first day with octopress, I went to bed after a few hours of setup, looking arround and doing each step at least once. I've [heard about](http://adam.pohorecki.pl/blog/2012/01/17/octopress-the-good-the-bad-and-the-ugly/) the biggest problem of octopress blogs is that they look all the same.
 
@@ -50,8 +52,12 @@ From here on, this post is just about what I found out about the concept in octo
 
 There is plenty of documentation out there if you want to dive deeper.
 
-## Meat ##
+# Meat #
 First off, this theme has no sibars, no github project includes no nothing. That sucks, but I like the typo. Here we go:
 
-# Including a GitHub Repo section:
+### Including a GitHub Repo section:
+I would like to show a section right beneath the header that contains the ```overflow-x```*-scrollable* content of github repos.
 
+### Refactoring the GitHub section to be usable for all the upper buttons.
+
+I'm already tired now, spend the whole day with css and I freakin' hate it. ;) need to learn this stuff.
