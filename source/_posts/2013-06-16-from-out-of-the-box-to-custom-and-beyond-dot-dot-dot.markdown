@@ -54,4 +54,4 @@ There is plenty of documentation out there if you want to dive deeper.
 First off, this theme has no sibars, no github project includes no nothing. That sucks, but I like the typo. Here we go:
 
 # Including a GitHub Repo section:
-   
+

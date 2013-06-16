@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://kjellski.github.io
-title: iksllejk
+title: /dev/eloper
 subtitle: A master of none, jack of all trades...
 author: Kjell Otto
 simple_search: http://google.com/search
@@ -61,6 +61,9 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
+
+# Coderwall
+coderwall_user: kjellski
 
 # Github repositories
 github_user: kjellski

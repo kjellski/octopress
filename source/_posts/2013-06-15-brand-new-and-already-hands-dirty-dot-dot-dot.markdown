@@ -50,6 +50,7 @@ Nope, image, video and snipped left:
 btw. for having the text below the image, I've installed the [image_caption_tag.rb](http://blog.zerosharp.com/image-captions-for-octopress/)
 
 * Video, here we go, super easy: 
+
 {% video http://s3.imathis.com/video/zero-to-fancy-buttons.mp4 640 320 http://s3.imathis.com/video/zero-to-fancy-buttons.png %}
 
 * The last part, here is some code from a [codepen.io](http://codepen.io/kjellski):
