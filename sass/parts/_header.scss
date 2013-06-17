@@ -338,14 +338,14 @@ $header-border-height: 1px;
                 }
             }
             &.twitter{
-                background: image-url('social/twitter.png') center no-repeat #55CFF8;
+                background: image-url('social/Twitter.png') center no-repeat #55CFF8;
                 border: 1px solid #55CFF8;
                 &:hover{
                     border: 1px solid darken(#55CFF8, 10%);
                 }
             }
             &.github{
-                background: image-url('social/github.png') center no-repeat rgb(74, 79, 95);
+                background: image-url('social/Github.png') center no-repeat rgb(74, 79, 95);
                 border: 1px solid rgb(175,182,202);
                 &:hover{
                     border: 1px solid darken(rgb(175,182,202), 10%);
