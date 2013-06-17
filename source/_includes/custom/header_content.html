@@ -1,3 +1,5 @@
+
+
 <div id="header-content">
 
 {% if site.github_user %}
@@ -9,6 +11,11 @@
     <!--<a href="https://github.com/{{site.github_user}}">@{{site.github_user}}</a> on GitHub-->
     {% endif %}
     <script type="text/javascript">
+    
+    // $('.social>.github').hover(function (e) {
+    //   $('#header-content').slideToggle('slow');
+    // });
+
     $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');

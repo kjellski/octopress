@@ -60,4 +60,6 @@ I would like to show a section right beneath the header that contains the ```ove
 
 ### Refactoring the GitHub section to be usable for all the upper buttons.
 
-I'm already tired now, spend the whole day with css and I freakin' hate it. ;) need to learn this stuff.
+Okay, I've done it. But it took me an evening to get into the depths of CSS. This is quite new to me and I'm sometimes frustrated. Fortunately, a good friend of mine, also freelance developer, [@matthiasvogt](http://twitter.com/matthiasvogt) helps me when I struggle. Thanks to you buddy, maybe you'll read this one day ;)
+
+The subtitle bar is currently not animated or something. I'll write another post about getting the animation in place and make it more generic. I would like to be able to also show badges and tweets in there. We'll see how this works out.
