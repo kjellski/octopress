@@ -7,7 +7,7 @@ $logo-size: 28px;
 
 #gh_repos {
     height: $header-content-block-height + 4px;
-    width: 6 * $header-content-block-widht;
+    width: 5 * $header-content-block-widht;
     float: left;
 }
 
@@ -17,8 +17,8 @@ $logo-size: 28px;
     padding-top: 4px;
     padding-left: 4px;
 
-    width:   $header-content-block-widht;
-    height:  $header-content-block-height - 4px;
+    width:   $header-content-block-widht - 8;
+    height:  $header-content-block-height - 10px;
     
     display: inline-block;
     word-wrap: break-word;
