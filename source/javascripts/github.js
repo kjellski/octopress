@@ -30,10 +30,10 @@ var github = {
     for(i = 0; i < repos.length && i < 5; i++) {
       fragment += 
         '<div class="header-content-block">' + 
-          '<a href="'+repos[i].html_url+'">' + repos[i].name +
-          '<img class="social_icon" src="/images/glyphicons_381_github.png" alt="github icon" title="Github"/>' + 
-          '</a>' + 
-          '<div class="repo-desc">';
+          '<a href="'+repos[i].html_url+'">' + 
+            '<div class="github-logo"> </div>' + // logo
+            '<div class="github-text">'+ repos[i].name +'</div>' + // name
+            '<div class="repo-desc">';
       var desc_length = 70;
       if (repos[i].description.length > desc_length) {
         fragment += repos[i].description.substr(0, desc_length) + "...";
@@ -43,6 +43,7 @@ var github = {
 
       fragment += 
           '</div>' +
+          '</a>' + 
         '</div>';
     }
     t.innerHTML = fragment;

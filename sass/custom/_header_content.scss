@@ -1,25 +1,53 @@
-$header-content-block-widht: 220px;
-$header-content-block-height: $header-height * 3;
+$header-content-block-widht: 280px;
+$header-content-block-height: $header-height * 4;
+
+$logo-size: 28px;
 
 #header >* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 #gh_repos {
-    // display: block;
     height: $header-content-block-height + 4px;
-
-    width: 10 * $header-content-block-widht;
-    white-space: nowrap;
+    width: 6 * $header-content-block-widht;
     float: left;
 }
 
 .header-content-block {
-    border:  1px solid blue;
-    
-    width:   $header-content-block-widht;
-    height:  $header-content-block-height;
-    text-overflow: auto;
 
+    margin-right: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+
+    width:   $header-content-block-widht;
+    height:  $header-content-block-height - 4px;
+    
     display: inline-block;
+    word-wrap: break-word;
+
+    .github-logo{
+        float: left;
+        @include border-radius(30%);
+        @include inline-block;
+        opacity: 0.5;
+        @include square(28px);
+        @include transition(0.3s);
+        &:hover{
+            opacity: 1;
+        }
+        background: image-url('social/github.png') center no-repeat rgb(74, 79, 95);
+        border: 1px solid rgb(175,182,202);
+        &:hover{
+            border: 1px solid darken(rgb(175,182,202), 10%);
+        }
+    }
+    .github-text{
+        float: left;
+        padding-left: 4px;
+    }
+    .repo-desc{
+        display: block;
+        float: left;
+        width: $header-content-block-widht;
+    }
 }
 
 #header-content {
