@@ -8,6 +8,7 @@ categories:
 - design
 - setup
 - blogging
+- customization
 ---
 
 I've been willing to blog since a pretty long time now, but I just never started doing it for sure. I think part of the problem was that I always felt that it is the wrong way to be bound to an online form where you have to type in your text and press preview again and again. Right now I'm starting to write this post in my favorite editor and this already makes more sense to me then anything I've tried before. 

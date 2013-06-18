@@ -3,7 +3,8 @@
 
 <body>
 	<header id="header" class="inner">{% include header.html %}</header>
-	{% unless page.banner == false %}
+    {% include custom/atops.html %}
+    {% unless page.banner == false %}
 		{% include banner.html %}
 	{% endunless %}
 	<div id="content" class="inner">{{ content | expand_urls: root_url }}</div>

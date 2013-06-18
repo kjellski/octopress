@@ -10,7 +10,7 @@ categories:
 - blogging
 - css
 - scss
-- custom
+- customization
 ---
 This post has two parts, the intro for what has been done and the Meat part that contains the usefull stuff.
 
