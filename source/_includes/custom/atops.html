@@ -1,39 +1,53 @@
+<script src="{{ root_url }}/javascripts/custom/atops.js" type="text/javascript"> </script>
+<script id="atopcontent" type="text/x-handlebars-template">
+    <section id="atops-content">
+        {{#each items}}
+            {{> atopitem this}}
+        {{/each}}
+    </section>
+</script>
 
+<script id="atopitem" type="text/x-handlebars-template">
+    <div class="atop-item">
+        <div class="item-logo">{{logo}}</div>
+        <div class="item-title">{{title}}</div>
+        <div class="item-description">{{description}}</div>
+    </div>
+</script>
 
 <div id="header-content" class="inner">
+    {% if site.github_user %}
+    <section>
+        <div id="header-content-container">
+            <div class="loading">Status updating...</div>
+        </div>
+        {% if site.github_show_profile_link %}
+        <!--<a href="https://github.com/{{site.github_user}}">@{{site.github_user}}</a> on GitHub-->
+        {% endif %}
+        <script type="text/javascript">
+        
+        // $('.social>.github').hover(function (e) {
+        //   $('#header-content').slideToggle('slow');
+        // });
 
-{% if site.github_user %}
-<section>
-    <div id="header-content-container">
-        <div class="loading">Status updating...</div>
-    </div>
-    {% if site.github_show_profile_link %}
-    <!--<a href="https://github.com/{{site.github_user}}">@{{site.github_user}}</a> on GitHub-->
-    {% endif %}
-    <script type="text/javascript">
-    
-    // $('.social>.github').hover(function (e) {
-    //   $('#header-content').slideToggle('slow');
-    // });
+        $(document).ready(function(){
+            if (!window.jXHR){
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = '{{ root_url}}/javascripts/libs/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
 
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '{{ root_url}}/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: '{{site.github_user}}',
-            count: {{site.github_repo_count}},
-            skip_forks: {{site.github_skip_forks}},
-            target: '#header-content-container'
+            github.showRepos({
+                user: '{{site.github_user}}',
+                count: {{site.github_repo_count}},
+                skip_forks: {{site.github_skip_forks}},
+                target: '#header-content-container'
+            });
         });
-    });
-    </script>
-    <script src="{{ root_url }}/javascripts/github.js" type="text/javascript"> </script>
-</section>
-{% endif %}
+        </script>
+        <script src="{{ root_url }}/javascripts/github.js" type="text/javascript"> </script>
+    </section>
+    {% endif %}
 </div>
