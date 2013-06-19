@@ -41,4 +41,5 @@ The [SCSS](http://sass-lang.com/) for it is located accordingly, under ```scss/c
 
 ### the javascript of it
 
-But how do we manage the javascript that should include and load this content? 
+But how do we manage the javascript that should include and load this content? I would like to use handlebars for this. To insert content into the premade part of this, we would hand over an array of object that contain the data to generate the caroussel that is show right under the ```header```.
+
