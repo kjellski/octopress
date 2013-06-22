@@ -2,27 +2,21 @@
 var source   = $('#atopcontent-template').html();
 var template = Handlebars.compile(source);
 
-var data_template = {
+var github_data = {
     items: [
         {
-            logo: 'testlogo1',
+            logo: 'GHLOGO',
             title: 'testtitle1',
             description: 'lorem ipsum dolore no idea how that continues right now...1'
-        }
-        , {
-            logo: 'testlogo2',
-            title: 'testtitle2',
-            description: 'lorem ipsum dolore no idea how that continues right now...2'
-        }
-        , {
-            logo: 'testlogo3',
-            title: 'testtitle3',
-            description: 'lorem ipsum dolore no idea how that continues right now...3'
         }
     ]
 }
 
-var html = template(data_template);
+var renderTemplate = function (data) {
+  return template(github_data);
+}
+
+var html = renderTemplate(github_data);
 $('#atop-content').html(html);
 
 // function that binds the toggle on the element that is used 
@@ -31,44 +25,90 @@ var bindElementToAtopOpening = function (selector) { //, jQueryEvent, jQueryAnim
     var contentContainer = $('#atop-content');
     contentContainer.hide();
 
-    var elements = $(selector)
-    console.log(elements)
+    var elements = $(selector);
     for (var i = elements.length - 1; i >= 0; i--) {
-        createBindingWithToggleState(elements[i]);
+        createBindingWithToggleState(elements[i],selector);
     }
 };
 
-var createBindingWithToggleState = function (element) {
+var createBindingWithToggleState = function (element, selector) {
     var stayOpen;
-
     $('#atop-content').hide();
-
     stayOpen = false;
 
-    $('#symbol').click(function() {
-        
+    $(selector).click(function() {
         if (stayOpen) {
             stayOpen = false;
         } else {
             stayOpen = true;
         }
         
-        if ($('#atop-content').is('#atop-content')) {
+        if ($('#atop-content').is(':hidden')) {
             return $('#atop-content').slideUp();
         } else {
             return $('#atop-content').slideDown();
         }
     });
 
-    $('#symbol').hover(function() {
+    $(selector).hover(function() {
         if (!stayOpen) {
             return $('#atop-content').slideToggle();
         }
     });
 }
 
-bindElementToAtopOpening('.social>a.github'); //, 'hover', 'slideToggle');
+bindElementToAtopOpening('.social>a'); //, 'hover', 'slideToggle');
 
+
+var github_data = {
+    items: [
+        {
+            logo: 'GHLOGO',
+            title: 'testtitle1',
+            description: 'lorem ipsum dolore no idea how that continues right now...1'
+        }
+    ]
+}
+
+var twitter_data = {
+    items: [
+        {
+            logo: 'TWITLOGO',
+            title: 'testtitle1',
+            description: 'lorem ipsum dolore no idea how that continues right now...1'
+        }
+        , {
+            logo: 'TWITLOGO',
+            title: 'testtitle2',
+            description: 'lorem ipsum dolore no idea how that continues right now...2'
+        }
+        , {
+            logo: 'TWITLOGO',
+            title: 'testtitle3',
+            description: 'lorem ipsum dolore no idea how that continues right now...3'
+        }
+    ]
+}
+
+var coderwall_data = {
+    items: [
+        {
+            logo: 'CODERWALL',
+            title: 'testtitle1',
+            description: 'lorem ipsum dolore no idea how that continues right now...1'
+        }
+        , {
+            logo: 'CODERWALL',
+            title: 'testtitle2',
+            description: 'lorem ipsum dolore no idea how that continues right now...2'
+        }
+        , {
+            logo: 'CODERWALL',
+            title: 'testtitle3',
+            description: 'lorem ipsum dolore no idea how that continues right now...3'
+        }
+    ]
+}
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
 // $(document).ready(function() {

@@ -19,6 +19,37 @@
 <nav id="sub-nav" class="alignright">
     <div class="social">
         {% if site.facebook_user %}
+        <a class="facebook" href="#" title="Facebook">Facebook</a>
+        {% endif %}
+        {% if site.googleplus_user and site.googleplus_hidden == false %}
+        <a class="google" href="#" title="Google+">Google+</a>
+        {% endif %}
+        {% if site.twitter_user %}
+        <a class="twitter" href="#" title="Twitter">Twitter</a>
+        {% endif %}
+        {% if site.github_user %}
+        <a class="github" href="#" title="GitHub">GitHub</a>
+        {% endif %}
+        {% if site.pinboard_user %}
+        <a class="pinboard" href="#" title="Pinboard">Pinboard</a>
+        {% endif %}
+        {% if site.coderwall_user %}
+        <a class="coderwall" href="#" title="Coderwall">Coderwall</a>
+        {% endif %}
+        {% if site.linkedin_user %} 
+        <a class="linkedin" href="#">LinkedIn</a>
+        {% endif %}
+        {% if site.pinterest_user %}
+        <a class="pinterest" href="#" title="Pinterest">Pinterest</a>
+        {% endif %}
+        {% if site.delicious_user %}
+        <a class="delicious" href="#" title="Delicious">Delicious</a>
+        {% endif %}
+        {% if site.subscribe_rss %}
+        <a class="rss" href="{{ site.subscribe_rss }}" title="RSS">RSS</a>
+        {% endif %}
+
+        <!--{% if site.facebook_user %}
         <a class="facebook" href="http://www.facebook.com/{{ site.facebook_user }}" title="Facebook">Facebook</a>
         {% endif %}
         {% if site.googleplus_user and site.googleplus_hidden == false %}
@@ -47,7 +78,7 @@
         {% endif %}
         {% if site.subscribe_rss %}
         <a class="rss" href="{{ site.subscribe_rss }}" title="RSS">RSS</a>
-        {% endif %}
+        {% endif %} -->
     </div>
     <form class="search" action="{{ site.simple_search }}" method="get">
         <input class="alignright" type="text" name="q" results="0">
