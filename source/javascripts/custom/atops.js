@@ -27,24 +27,47 @@ $('#atop-content').html(html);
 
 // function that binds the toggle on the element that is used 
 // to show and hide the atops area
-var bindAtopsToggleElement = function (element) { //, jQueryEvent, jQueryAnimation) {
-    var templateContainer = $('#atop-content');
-    console.log(templateContainer);
-    templateContainer.hide();
+var bindElementToAtopOpening = function (selector) { //, jQueryEvent, jQueryAnimation) {
+    var contentContainer = $('#atop-content');
+    contentContainer.hide();
 
-    // $(element).__proto__[jQueryEvent](function (arguments) {
-    //     $("#atopcontent-template").__proto__[jQueryAnimation]();
-    // });
-    if (element.length !== undefined && element.length > 0) {
-        for (var i = element.length - 1; i >= 0; i--) {
-            $(element[i]).hover(function(){
-                $('#atop-content').slideToggle();
-            });
-        };
+    var elements = $(selector)
+    console.log(elements)
+    for (var i = elements.length - 1; i >= 0; i--) {
+        createBindingWithToggleState(elements[i]);
     }
 };
 
-bindAtopsToggleElement($('.social>a')); //, 'hover', 'slideToggle');
+var createBindingWithToggleState = function (element) {
+    var stayOpen;
+
+    $('#atop-content').hide();
+
+    stayOpen = false;
+
+    $('#symbol').click(function() {
+        
+        if (stayOpen) {
+            stayOpen = false;
+        } else {
+            stayOpen = true;
+        }
+        
+        if ($('#atop-content').is('#atop-content')) {
+            return $('#atop-content').slideUp();
+        } else {
+            return $('#atop-content').slideDown();
+        }
+    });
+
+    $('#symbol').hover(function() {
+        if (!stayOpen) {
+            return $('#atop-content').slideToggle();
+        }
+    });
+}
+
+bindElementToAtopOpening('.social>a.github'); //, 'hover', 'slideToggle');
 
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
