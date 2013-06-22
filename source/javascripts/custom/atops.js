@@ -1,4 +1,5 @@
-var source   = $("#atopcontent-template").html();
+// handlebars loading the html template and rendering in the content
+var source   = $('#atopcontent-template').html();
 var template = Handlebars.compile(source);
 
 var data_template = {
@@ -23,6 +24,28 @@ var data_template = {
 
 var html = template(data_template);
 $('#atop-content').html(html);
+
+// function that binds the toggle on the element that is used 
+// to show and hide the atops area
+var bindAtopsToggleElement = function (element) { //, jQueryEvent, jQueryAnimation) {
+    var templateContainer = $('#atop-content');
+    console.log(templateContainer);
+    templateContainer.hide();
+
+    // $(element).__proto__[jQueryEvent](function (arguments) {
+    //     $("#atopcontent-template").__proto__[jQueryAnimation]();
+    // });
+    if (element.length !== undefined && element.length > 0) {
+        for (var i = element.length - 1; i >= 0; i--) {
+            $(element[i]).hover(function(){
+                $('#atop-content').slideToggle();
+            });
+        };
+    }
+};
+
+bindAtopsToggleElement($('.social>a')); //, 'hover', 'slideToggle');
+
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
 // $(document).ready(function() {

@@ -17,7 +17,7 @@
 // 01.  default sizes of the elements:
 
 // the atop containers properties itself
-$atop-container-width:  100%; // this is the complete atops container width
+$atop-container-width:  1000px; // this is the complete atops container width
 $atop-container-height: 250px; // this is the complete atops container height
 
 // the properties of the items in the atops container
@@ -36,37 +36,46 @@ $atop-item-title-lineheight: 25px;
 // ----------------------------------------------------------------------------
 // 02.  element definitions:
 #atop-content {
-    width: $atop-container-width;
+
+    margin: 0 auto;
+    width:  $atop-container-width;
     height: $atop-container-height;
 
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-    display: inline-block;
     vertical-align: middle;
     padding: 10px 15px;
+
     border: #a0a0a0 solid 1px;
     background: #f5f5f5;
 
+    clear: both;
+
     >.atops-section {
 
+        display: inline-block;
+        width: 100%;
+        
         >.atop-item {
             width:  $atop-item-width;
             height: $atop-item-height;
 
             display: inline-block;
             word-wrap: break-word;
+            float: left;
 
             >.item-logo {
                 width:  $atop-item-logo-width;
                 height: $atop-item-logo-height;
             }
             >.item-title {
+                width:  $atop-item-width - $atop-item-logo-width;
+                height: $atop-item-logo-height;
                 line-height: $atop-item-title-lineheight;
             }
             >.item-description {
                 display: block;
-
             }
         }
     }
