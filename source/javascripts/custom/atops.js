@@ -1,14 +1,28 @@
 // handlebars loading the html template and rendering in the content
 var source   = $('#atopcontent-template').html();
 var template = Handlebars.compile(source);
-
 var renderTemplate = function (data) {
   return template(data);
 }
 
+var atops = [];
+
 // function that binds the toggle on the element that is used 
 // to show and hide the atops area
-var bindElementToAtopOpening = function (selector, data) { //, jQueryEvent, jQueryAnimation) {
+// @selector binds the element that shows on hover and keeps open on click
+// @data is the data to be shown in the format of this object:
+//  {
+//      name: 'twitter'
+//      , items: [
+//          { 
+//              logo: image_url, // will be 28x28 px sized for each section to be shown
+//              title: 'testtitle1', // will be cut after 15 characters or so
+//              description: description // will be cut after 120 characters or so...
+//          }
+//     ]
+// }
+// this is checked for existence to ease the formatting 
+var bindElementToAtopOpening = function (selector, data) {
     var contentContainer = $('#atop-content');
     contentContainer.hide();
 
@@ -19,40 +33,65 @@ var bindElementToAtopOpening = function (selector, data) { //, jQueryEvent, jQue
     createBindingWithToggleState(selector, data);
 };
 
-var createBindingWithToggleState = function (selector, data) {
-    var stayOpen;
-    $('#atop-content').hide();
-    stayOpen = false;
+var createBindingWithToggleState = function (s, d) {
+    // this is the one we'll keep arround to access its state etc
+    var atop = {};
+    // selector for the element that gets the click and hover fns
+    atop.selector = s;
+    // data to be displayed
+    atop.data = d;
+    atop.name = d.name;
+    // parent element #atop-content, just to cache it
+    atop.parent = $('#atop-content');
+    // sections Id of the content, just to cache it 
+    atop.sectionId = $('#' + atop.name + '-atop-id');
+    // the rendered template for the section
+    atop.html = renderTemplate(d);
+    // communication variable for tracking the opened state
+    atop.stayOpen = false;
 
-    //console.log('binding to: ', $(selector));
+    atop.hoverFn = function() {
+        if (!atop.stayOpen) {
+            sectionId.show();
+            atop.parent.slideToggle();
+        }
+    };
 
-    $('#atop-content').html(renderTemplate(data));
-
-    $(selector).click(function() {
-        if (stayOpen) {
-            stayOpen = false;
+    atop.clickFn = function() {
+        if (atop.stayOpen) {
+            atop.stayOpen = false;
         } else {
-            stayOpen = true;
+            atop.stayOpen = true;
         }
         
-        if ($('#atop-content').is(':hidden')) {
-            return $('#atop-content').slideUp();
+        // every section is getting its own id through the 
+        // data.name field in the template
+        if (atop.sectionId.is(':hidden')) {
+            atop.sectionId.hide();
+            atop.parent.slideUp();
         } else {
-            return $('#atop-content').slideDown();
+            atop.sectionId.show();
+            atop.parent.slideDown();
         }
-    });
+    };
 
-    $(selector).hover(function() {
-        if (!stayOpen) {
-            return $('#atop-content').slideToggle();
-        }
-    });
+    // this variable is used to communicate the status of the
+    // section throughout the hover and the click function
+    $(atop.selector).click(atop.clickFn);
+    $(atop.selector).hover(atop.hoverFn);
+
+    // hide the elements the content is getting displayed in
+    atop.parent.hide();
+    atop.sectionId.hide();
+    // render the actual content in here
+    atop.parent.append(atop.html);
 }
 
 var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 var github_data = {
-    items: [
+    name: 'github'
+    , items: [
         { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
         , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
         , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
@@ -62,7 +101,8 @@ var github_data = {
 }
 
 var twitter_data = {
-    items: [
+    name: 'twitter'
+    , items: [
         { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
         , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
         , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
@@ -72,7 +112,8 @@ var twitter_data = {
 }
 
 var coderwall_data = {
-    items: [
+    name: 'codewall'
+    , items: [
         { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
         , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
         , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
@@ -83,7 +124,7 @@ var coderwall_data = {
 
 bindElementToAtopOpening('#github-social', github_data);
 bindElementToAtopOpening('#twitter-social', twitter_data);
-bindElementToAtopOpening('#codewall-social', coderwall_data);
+bindElementToAtopOpening('#coderwall-social', coderwall_data);
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
 // $(document).ready(function() {
