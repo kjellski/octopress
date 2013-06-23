@@ -2,39 +2,31 @@
 var source   = $('#atopcontent-template').html();
 var template = Handlebars.compile(source);
 
-var github_data = {
-    items: [
-        {
-            logo: 'GHLOGO',
-            title: 'testtitle1',
-            description: 'lorem ipsum dolore no idea how that continues right now...1'
-        }
-    ]
-}
-
 var renderTemplate = function (data) {
-  return template(github_data);
+  return template(data);
 }
-
-var html = renderTemplate(github_data);
-$('#atop-content').html(html);
 
 // function that binds the toggle on the element that is used 
 // to show and hide the atops area
-var bindElementToAtopOpening = function (selector) { //, jQueryEvent, jQueryAnimation) {
+var bindElementToAtopOpening = function (selector, data) { //, jQueryEvent, jQueryAnimation) {
     var contentContainer = $('#atop-content');
     contentContainer.hide();
 
     var elements = $(selector);
-    for (var i = elements.length - 1; i >= 0; i--) {
-        createBindingWithToggleState(elements[i],selector);
-    }
+    if (elements.length > 1)
+        throw new Error('binding to multiple elements is currently not supported.');
+
+    createBindingWithToggleState(selector, data);
 };
 
-var createBindingWithToggleState = function (element, selector) {
+var createBindingWithToggleState = function (selector, data) {
     var stayOpen;
     $('#atop-content').hide();
     stayOpen = false;
+
+    //console.log('binding to: ', $(selector));
+
+    $('#atop-content').html(renderTemplate(data));
 
     $(selector).click(function() {
         if (stayOpen) {
@@ -57,58 +49,41 @@ var createBindingWithToggleState = function (element, selector) {
     });
 }
 
-bindElementToAtopOpening('.social>a'); //, 'hover', 'slideToggle');
-
+var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 var github_data = {
     items: [
-        {
-            logo: 'GHLOGO',
-            title: 'testtitle1',
-            description: 'lorem ipsum dolore no idea how that continues right now...1'
-        }
+        { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
     ]
 }
 
 var twitter_data = {
     items: [
-        {
-            logo: 'TWITLOGO',
-            title: 'testtitle1',
-            description: 'lorem ipsum dolore no idea how that continues right now...1'
-        }
-        , {
-            logo: 'TWITLOGO',
-            title: 'testtitle2',
-            description: 'lorem ipsum dolore no idea how that continues right now...2'
-        }
-        , {
-            logo: 'TWITLOGO',
-            title: 'testtitle3',
-            description: 'lorem ipsum dolore no idea how that continues right now...3'
-        }
+        { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
+        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
     ]
 }
 
 var coderwall_data = {
     items: [
-        {
-            logo: 'CODERWALL',
-            title: 'testtitle1',
-            description: 'lorem ipsum dolore no idea how that continues right now...1'
-        }
-        , {
-            logo: 'CODERWALL',
-            title: 'testtitle2',
-            description: 'lorem ipsum dolore no idea how that continues right now...2'
-        }
-        , {
-            logo: 'CODERWALL',
-            title: 'testtitle3',
-            description: 'lorem ipsum dolore no idea how that continues right now...3'
-        }
+        { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
+        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
+        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
+        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
+        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
     ]
 }
+
+bindElementToAtopOpening('#github-social', github_data);
+bindElementToAtopOpening('#twitter-social', twitter_data);
+bindElementToAtopOpening('#codewall-social', coderwall_data);
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
 // $(document).ready(function() {

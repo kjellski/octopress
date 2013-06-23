@@ -19,34 +19,34 @@
 <nav id="sub-nav" class="alignright">
     <div class="social">
         {% if site.facebook_user %}
-        <a class="facebook" href="#" title="Facebook">Facebook</a>
+        <a id="facebook-social" class="facebook" href="#" title="Facebook">Facebook</a>
         {% endif %}
         {% if site.googleplus_user and site.googleplus_hidden == false %}
-        <a class="google" href="#" title="Google+">Google+</a>
+        <a id="google-social" class="google" href="#" title="Google+">Google+</a>
         {% endif %}
         {% if site.twitter_user %}
-        <a class="twitter" href="#" title="Twitter">Twitter</a>
+        <a id="twitter-social" class="twitter" href="#" title="Twitter">Twitter</a>
         {% endif %}
         {% if site.github_user %}
-        <a class="github" href="#" title="GitHub">GitHub</a>
+        <a id="github-social" class="github" href="#" title="GitHub">GitHub</a>
         {% endif %}
         {% if site.pinboard_user %}
-        <a class="pinboard" href="#" title="Pinboard">Pinboard</a>
+        <a id="pinboard-social" class="pinboard" href="#" title="Pinboard">Pinboard</a>
         {% endif %}
         {% if site.coderwall_user %}
-        <a class="coderwall" href="#" title="Coderwall">Coderwall</a>
+        <a id="coderwall-social" class="coderwall" href="#" title="Coderwall">Coderwall</a>
         {% endif %}
         {% if site.linkedin_user %} 
-        <a class="linkedin" href="#">LinkedIn</a>
+        <a id="linkedin-social" class="linkedin" href="#">LinkedIn</a>
         {% endif %}
         {% if site.pinterest_user %}
-        <a class="pinterest" href="#" title="Pinterest">Pinterest</a>
+        <a id="pinterest-social" class="pinterest" href="#" title="Pinterest">Pinterest</a>
         {% endif %}
         {% if site.delicious_user %}
-        <a class="delicious" href="#" title="Delicious">Delicious</a>
+        <a id="delicious-social" class="delicious" href="#" title="Delicious">Delicious</a>
         {% endif %}
         {% if site.subscribe_rss %}
-        <a class="rss" href="{{ site.subscribe_rss }}" title="RSS">RSS</a>
+        <a id="rss-social" class="rss" href="{{ site.subscribe_rss }}" title="RSS">RSS</a>
         {% endif %}
 
         <!--{% if site.facebook_user %}
