@@ -6,6 +6,19 @@ var renderTemplate = function (data) {
 }
 
 var atops = [];
+// check wether anyone is opened
+var isAnyAtopOpen = function () {
+    var anyOpenedAtop = false;
+    for (var i = atops.length - 1; i >= 0; i--) {
+        if (atops[i].stayOpen) {
+            anyOpenedAtop = true;
+        }
+    };  
+    return anyOpenedAtop;
+}
+
+// global to keep the complete control opened
+var globalStayOpen = false;
 
 // function that binds the toggle on the element that is used 
 // to show and hide the atops area
@@ -44,34 +57,38 @@ var createBindingWithToggleState = function (s, d) {
     // parent element #atop-content, just to cache it
     atop.parent = $('#atop-content');
     // sections Id of the content, just to cache it 
-    atop.sectionId = $('#' + atop.name + '-atop-id');
+    atop.sectionId = '#' + atop.name + '-atop-id';
     // the rendered template for the section
     atop.html = renderTemplate(d);
     // communication variable for tracking the opened state
     atop.stayOpen = false;
 
     atop.hoverFn = function() {
-        if (!atop.stayOpen) {
-            sectionId.show();
-            atop.parent.slideToggle();
+        console.log('hover: ', atop.selector);
+        console.log('globalStayOpen: ', globalStayOpen);
+        console.log('atop.stayOpen:  ', atop.stayOpen);
+
+        if (!atop.stayOpen) {
+            $(atop.sectionId).slideToggle();
+        }
+
+        // open up the whole thing, nothing is yet opened
+        if (!globalStayOpen) {
+            $('#atop-content').slideToggle();
         }
     };
 
     atop.clickFn = function() {
-        if (atop.stayOpen) {
-            atop.stayOpen = false;
-        } else {
-            atop.stayOpen = true;
-        }
+        console.log('click: ', atop.selector);
+        // toggle the state for this section
+        atop.stayOpen = !atop.stayOpen;
         
-        // every section is getting its own id through the 
-        // data.name field in the template
-        if (atop.sectionId.is(':hidden')) {
-            atop.sectionId.hide();
-            atop.parent.slideUp();
+        // set the general seciont to open only if 
+        // any of the sections is open as well.
+        if (isAnyAtopOpen()) {
+            globalStayOpen = true;
         } else {
-            atop.sectionId.show();
-            atop.parent.slideDown();
+            globalStayOpen = false;        
         }
     };
 
@@ -81,10 +98,12 @@ var createBindingWithToggleState = function (s, d) {
     $(atop.selector).hover(atop.hoverFn);
 
     // hide the elements the content is getting displayed in
-    atop.parent.hide();
-    atop.sectionId.hide();
+    $('#atop-content').hide();
     // render the actual content in here
-    atop.parent.append(atop.html);
+    $('#atop-content').append(atop.html);
+
+    $(atop.sectionId).hide();
+    atops.push(atop);
 }
 
 var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
