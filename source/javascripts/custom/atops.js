@@ -68,13 +68,22 @@ var createBindingWithToggleState = function (s, d) {
         console.log('globalStayOpen: ', globalStayOpen);
         console.log('atop.stayOpen:  ', atop.stayOpen);
 
-        if (!atop.stayOpen) {
-            $(atop.sectionId).slideToggle();
-        }
-
         // open up the whole thing, nothing is yet opened
         if (!globalStayOpen) {
             $('#atop-content').slideToggle();
+        }
+
+        // this section is not marked to stay open
+        if (!atop.stayOpen) {
+            // if this is not the first enabled one
+            if (!globalStayOpen) {
+                $(atop.sectionId).slideToggle();
+            } else {
+                // TODO: 
+                // somehow show it without animation !?
+                // or at least make the animation smooth...
+                $(atop.sectionId).slideToggle();
+            }
         }
     };
 
@@ -106,38 +115,42 @@ var createBindingWithToggleState = function (s, d) {
     atops.push(atop);
 }
 
-var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor " +
+"incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation " + 
+"ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit " + 
+"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat " + 
+"non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 var github_data = {
     name: 'github'
     , items: [
-        { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'GHLOGO', title: 'testtitle1', description: lipsum }
+        { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
     ]
 }
 
 var twitter_data = {
     name: 'twitter'
     , items: [
-        { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
-        , { logo: 'TWITLOGO', title: 'testtitle1', description: lipsum }
+        { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
     ]
 }
 
 var coderwall_data = {
     name: 'codewall'
     , items: [
-        { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
-        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
-        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
-        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
-        , { logo: 'CODERWALL', title: 'testtitle1', description: lipsum }
+        { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
+      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
     ]
 }
 

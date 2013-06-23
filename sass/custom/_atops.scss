@@ -36,46 +36,53 @@ $atop-item-title-lineheight: 25px;
 // ----------------------------------------------------------------------------
 // 02.  element definitions:
 #atop-content {
+    $paddings: 2px;
 
     margin: 0 auto;
     width:  $atop-container-width;
     // height: $atop-container-height;
 
-    margin-top: 10px;
-    margin-bottom: 10px;
-
     vertical-align: middle;
-    padding: 10px 15px;
-
-    border: #a0a0a0 solid 1px;
-    background: #f5f5f5;
+    padding: $paddings;
 
     clear: both;
 
-    >.atops-section {
+    div {
+        border: #a0a0a0 solid 1px;
+    }
 
+    >.atops-section {
+        
+        margin: 2px auto;
         display: inline-block;
         width: 100%;
         
         >.atop-item {
+            margin: $paddings auto;
+            padding: 4px;
             width:  $atop-item-width;
-            height: $atop-item-height;
 
             display: inline-block;
             word-wrap: break-word;
-            float: left;
+            // float: left;
 
             >.item-logo {
+                float: left;
                 width:  $atop-item-logo-width;
                 height: $atop-item-logo-height;
             }
             >.item-title {
-                width:  $atop-item-width - $atop-item-logo-width;
+                float: left;
+                margin: 0px auto;
+                width:  $atop-item-width - $atop-item-logo-width - 10;
                 height: $atop-item-logo-height;
                 line-height: $atop-item-title-lineheight;
             }
             >.item-description {
+                float: left;
+                width:  $atop-item-width;
                 display: block;
+                // max-height: 75px;
             }
         }
     }
