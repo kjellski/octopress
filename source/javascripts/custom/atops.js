@@ -46,32 +46,27 @@ var bindElementToAtopOpening = function (selector, data) {
     createBindingWithToggleState(selector, data);
 };
 
-var createBindingWithToggleState = function (s, d) {
+var createBindingWithToggleState = function (selector, data) {
     // this is the one we'll keep arround to access its state etc
     var atop = {};
     // selector for the element that gets the click and hover fns
-    atop.selector = s;
+    atop.selector = selector;
     // data to be displayed
-    atop.data = d;
-    atop.name = d.name;
+    atop.data = data;
+    atop.name = data.name;
     // parent element #atop-content, just to cache it
-    atop.parent = $('#atop-content');
+    atop.atopContent = $('#atop-content');
     // sections Id of the content, just to cache it 
     atop.sectionId = '#' + atop.name + '-atop-id';
     // the rendered template for the section
-    atop.html = renderTemplate(d);
+    atop.html = renderTemplate(data);
     // communication variable for tracking the opened state
     atop.stayOpen = false;
 
     atop.hoverFn = function() {
-        console.log('hover: ', atop.selector);
-        console.log('globalStayOpen: ', globalStayOpen);
-        console.log('atop.stayOpen:  ', atop.stayOpen);
-
-        // open up the whole thing, nothing is yet opened
-        if (!globalStayOpen) {
-            $('#atop-content').slideToggle();
-        }
+        // console.log('hover: ', atop.selector);
+        // console.log('globalStayOpen: ', globalStayOpen);
+        // console.log('atop.stayOpen:  ', atop.stayOpen);
 
         // this section is not marked to stay open
         if (!atop.stayOpen) {
@@ -84,6 +79,11 @@ var createBindingWithToggleState = function (s, d) {
                 // or at least make the animation smooth...
                 $(atop.sectionId).slideToggle();
             }
+        }
+
+        // open up the whole thing, nothing is yet opened
+        if (!globalStayOpen) {
+            atop.atopContent.slideToggle();
         }
     };
 
@@ -103,13 +103,13 @@ var createBindingWithToggleState = function (s, d) {
 
     // this variable is used to communicate the status of the
     // section throughout the hover and the click function
-    $(atop.selector).click(atop.clickFn);
-    $(atop.selector).hover(atop.hoverFn);
+    $(atop.selector).on('click', atop.clickFn);
+    $(atop.selector).on('hover', atop.hoverFn);
 
     // hide the elements the content is getting displayed in
-    $('#atop-content').hide();
+    atop.atopContent.hide();
     // render the actual content in here
-    $('#atop-content').append(atop.html);
+    atop.atopContent.append(atop.html);
 
     $(atop.sectionId).hide();
     atops.push(atop);
@@ -123,34 +123,31 @@ var lipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do e
 
 var github_data = {
     name: 'github'
+    , image: '/images/social/Github.png'
     , items: [
-        { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Github.png', title: 'testtitle1', description: lipsum }
+        { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
     ]
 }
 
 var twitter_data = {
     name: 'twitter'
+    , image: '/images/social/Twitter.png'
     , items: [
-        { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Twitter.png', title: 'testtitle1', description: lipsum }
+        { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
     ]
 }
 
 var coderwall_data = {
-    name: 'codewall'
+    name: 'coderwall'
+    , image: '/images/social/Coderwall.png'
     , items: [
-        { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
-      , { image: '/images/social/Coderwall.png', title: 'testtitle1', description: lipsum }
+        { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
+      , { title: 'testtitle1', description: lipsum }
     ]
 }
 

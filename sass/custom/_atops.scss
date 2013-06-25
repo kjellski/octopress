@@ -24,11 +24,9 @@ $atop-container-height: 250px; // this is the complete atops container height
 $atop-item-width:  280px; 
 $atop-item-height: $atop-container-height;
 
-// the logo inside the item
-$atop-item-logo-width:  28px;
-$atop-item-logo-height: 28px;
-
 // the title inside the item
+$atop-item-title-width:  $atop-item-width;
+$atop-item-title-height: 28px;
 $atop-item-title-lineheight: 25px;
 
 // the description inside the item
@@ -47,16 +45,16 @@ $atop-item-title-lineheight: 25px;
 
     clear: both;
 
-    div {
+    div, header {
         border: #a0a0a0 solid 1px;
     }
 
     >.atops-section {
-        
         margin: 2px auto;
         display: inline-block;
         width: 100%;
-        
+        // height: $atop-item-height;
+
         >.atop-item {
             margin: $paddings auto;
             padding: 4px;
@@ -64,23 +62,17 @@ $atop-item-title-lineheight: 25px;
 
             display: inline-block;
             word-wrap: break-word;
-            // float: left;
 
-            >.item-logo {
-                float: left;
-                width:  $atop-item-logo-width;
-                height: $atop-item-logo-height;
-            }
-            >.item-title {
+            >.item-header {
                 float: left;
                 margin: 0px auto;
-                width:  $atop-item-width - $atop-item-logo-width - 10;
-                height: $atop-item-logo-height;
+                width:  100%;
+                height: $atop-item-title-height;
                 line-height: $atop-item-title-lineheight;
             }
             >.item-description {
                 float: left;
-                width:  $atop-item-width;
+                width:  100%;
                 display: block;
                 // max-height: 75px;
             }

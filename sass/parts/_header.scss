@@ -1,11 +1,11 @@
-$header-height: 50px;
+// $header-height: 50px;
 $header-border-height: 2px;
 
 #header{
-    height: $header-height;
+    // height: $header-height;
     padding-top: 30px;
     border-bottom: $header-border-height solid $color-gray04;
-    line-height: $header-height;
+    // line-height: $header-height;
     // overflow: auto;
     @media screen and (max-width: 1040px){
         height: auto;
