@@ -1,12 +1,10 @@
-// $header-height: 50px;
+$header-height: 38px;
 $header-border-height: 2px;
 
 #header{
-    // height: $header-height;
-    padding-top: 30px;
-    border-bottom: $header-border-height solid $color-gray04;
-    // line-height: $header-height;
-    // overflow: auto;
+    height: $header-height;
+    margin-top: 10px;
+    // border-bottom: $header-border-height solid $color-gray04;
     @media screen and (max-width: 1040px){
         height: auto;
         position: relative;
@@ -22,7 +20,7 @@ $header-border-height: 2px;
     h1{
         float: left;
         font-weight: 300;
-        font-size: 30px;
+        font-size: 24px;
         @media screen and (max-width: 1040px){
             float: none;
         }
@@ -219,8 +217,8 @@ $header-border-height: 2px;
         right: 0;
         .button{
             background: $color-gray04;
-            width: 30px;
-            height: 30px;
+            width: 180px;
+            height: $header-height;
             position: absolute;
             top: 1px;
             right: -1px;
@@ -270,7 +268,7 @@ $header-border-height: 2px;
     }
     .search{
         float: left;
-        margin-top: 1px;
+        margin-top: -1px;
         position: relative;
         @media screen and (max-width: 1040px){
             float: none;
@@ -291,7 +289,7 @@ $header-border-height: 2px;
             border: 1px solid $color-gray04;
             font: 13px $font-default;
             padding: 6px 15px 6px 35px;
-            width: 100px;
+            width: 150px;
             @include transition(0.3s);
             @include border-radius(15px);
             &:focus, &:active{
