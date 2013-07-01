@@ -49,6 +49,13 @@ $atop-item-title-lineheight: 25px;
         border: #a0a0a0 solid 1px;
     }
 
+    .loader {
+        border: 0;
+        width: 16px;
+        height: 16px;
+        margin: 0 auto; 
+    }
+
     >.atops-section {
         margin: 2px auto;
         display: inline-block;
@@ -79,85 +86,3 @@ $atop-item-title-lineheight: 25px;
         }
     }
 }
-
-// #header-content-container {
-//     height: $header-content-block-height + 4px;
-//     width: 5 * $header-content-block-widht;
-//     float: left;
-// }
-
-// .header-content-block {
-
-//     margin-right: 4px;
-//     padding-top: 4px;
-//     padding-left: 4px;
-
-//     width:   $header-content-block-widht - 8;
-//     height:  $header-content-block-height - 10px;
-
-//     display: inline-block;
-//     word-wrap: break-word;
-
-//     .github-logo{
-//         float: left;
-//         @include border-radius(30%);
-//         @include inline-block;
-//         opacity: 0.5;
-//         @include square(28px);
-//         @include transition(0.3s);
-//         &:hover{
-//             opacity: 1;
-//         }
-//         background: image-url('social/Github.png') center no-repeat rgb(74, 79, 95);
-//         border: 1px solid rgb(175,182,202);
-//         &:hover{
-//             border: 1px solid darken(rgb(175,182,202), 10%);
-//         }
-//     }
-//     .github-text{
-//         float: left;
-//         padding-left: 4px;
-//     }
-//     .repo-desc{
-//         display: block;
-//         float: left;
-//         width: $header-content-block-widht;
-//     }
-// }
-
-// #header-content {
-//     width: 100%;
-//     overflow:  auto;
-
-//     @media screen and (max-width: 1040px){
-//         height: auto;
-//         position: relative;
-//         padding-bottom: 10px;
-//     }
-
-//     >section {
-//         padding-top: 10px;
-//         padding-bottom: 8px;
-//         border-top: $header-border-height solid $color-gray04;
-
-//         // line-height: $header-height;
-//         // display: block;
-
-//         // a{
-//         //     color: $color-gray01;
-//         //     @include transition(color 0.3s);
-//         //     &:hover{
-//         //         color: $color-main;
-//         //     }
-//         // }
-
-//         // h1{
-//         //     float: left;
-//         //     font-weight: 300;
-//         //     font-size: 20px;
-//         //     @media screen and (max-width: 1040px){
-//         //         float: none;
-//         //     }
-//         // }
-//     }
-// }
