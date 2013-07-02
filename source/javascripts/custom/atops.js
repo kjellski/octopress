@@ -1,11 +1,19 @@
 // handlebars loading the html template and rendering in the content
-var source   = $('#atopcontent-template').html();
-var template = Handlebars.compile(source);
-var renderTemplate = function (data) {
-  return template(data);
+var atopContentTemplateSource   = $('#atop-content-template').html();
+var atopContentTemplate = Handlebars.compile(atopContentTemplateSource);
+var renderAtopContentTemplate = function (data) {
+  return atopContentTemplate(data);
 }
 
+var atopLoadingTemplateSource   = $('#atop-loading-template').html();
+var atopLoadingTemplate = Handlebars.compile(atopLoadingTemplateSource);
+var renderAtopLoadingTemplate = function (data) {
+  return atopLoadingTemplate(data);
+}
+
+// registered atop widgets
 var atops = [];
+
 // check wether anyone is opened
 var isAnyAtopOpen = function () {
     var anyOpenedAtop = false;
@@ -23,19 +31,9 @@ var globalStayOpen = false;
 // function that binds the toggle on the element that is used 
 // to show and hide the atops area
 // @selector binds the element that shows on hover and keeps open on click
-// @data is the data to be shown in the format of this object:
-//  {
-//      name: 'twitter'
-//      , items: [
-//          { 
-//              logo: image_url, // will be 28x28 px sized for each section to be shown
-//              title: 'testtitle1', // will be cut after 15 characters or so
-//              description: description // will be cut after 120 characters or so...
-//          }
-//     ]
-// }
-// this is checked for existence to ease the formatting 
-var bindElementToAtopOpening = function (selector, data) {
+// @promise is the promise that should retrieve the data on resolve.
+//      that data is then getting rendered into the template for atops
+var bindElementToAtopOpening = function (selector, promise) {
     var contentContainer = $('#atop-content');
     contentContainer.hide();
 
@@ -43,23 +41,26 @@ var bindElementToAtopOpening = function (selector, data) {
     if (elements.length > 1)
         throw new Error('binding to multiple elements is currently not supported.');
 
-    createBindingWithToggleState(selector, data);
+    createBindingWithToggleState(selector, promise);
 };
 
-var createBindingWithToggleState = function (selector, data) {
+var createBindingWithToggleState = function (selector, promise) {
     // this is the one we'll keep arround to access its state etc
     var atop = {};
+    atop.promise = promise;
     // selector for the element that gets the click and hover fns
     atop.selector = selector;
     // data to be displayed
-    atop.data = data;
-    atop.name = data.name;
+    atop.data = undefined;
+    atop.name = selector.slice(1); // TODO: REFACTOR -> recycle the selector to create the unique
     // parent element #atop-content, just to cache it
     atop.atopContent = $('#atop-content');
     // sections Id of the content, just to cache it 
     atop.sectionId = '#' + atop.name + '-atop-id';
+    // the rendered template of the loading section
+    atop.loadingHtml = renderAtopLoadingTemplate({name: atop.name});
     // the rendered template for the section
-    atop.html = renderTemplate(data);
+    atop.html = undefined; //renderAtopContentTemplate(data);
     // communication variable for tracking the opened state
     atop.stayOpen = false;
 
@@ -67,6 +68,28 @@ var createBindingWithToggleState = function (selector, data) {
         // console.log('hover: ', atop.selector);
         // console.log('globalStayOpen: ', globalStayOpen);
         // console.log('atop.stayOpen:  ', atop.stayOpen);
+
+        // set the promise in context and let it render the template once 
+        // data is available. the data has to be shown in the format of this object:
+        //  {
+        //      name: 'unique-atop-id'
+        //      , items: [
+        //          { 
+        //              logo: image_url, // will be 28x28 px sized for each section to be shown
+        //              title: 'testtitle1', // will be cut after 15 characters or so
+        //              description: description // will be cut after 120 characters or so...
+        //          }
+        //     ]
+        // }
+        // this is checked for existence to ease the formatting 
+        if (atop.html === undefined) {
+            $.when(atop.promise).then( $.proxy(function (data) {
+                this.data = data; // this is atop.data 
+                this.html = renderAtopContentTemplate(data);
+                $(this.sectionId).replaceWith(this.html);
+                console.log('this: ', this);
+            }, atop));
+        }
 
         // this section is not marked to stay open
         if (!atop.stayOpen) {
@@ -109,7 +132,7 @@ var createBindingWithToggleState = function (selector, data) {
     // hide the elements the content is getting displayed in
     atop.atopContent.hide();
     // render the actual content in here
-    atop.atopContent.append(atop.html);
+    atop.atopContent.append(atop.loadingHtml);
 
     $(atop.sectionId).hide();
     atops.push(atop);
@@ -157,6 +180,7 @@ var github = {
     showRepos: function(options) {
         this.options = options;
         this.deferred = new $.Deferred();
+        console.log(this.deferred);
         this._getData();
         return this.deferred.promise();
     },
@@ -182,7 +206,7 @@ var github = {
 
         if (this.options.count) { repos.splice(this.options.count); }
         this.data = this._render(repos);
-        this.deferred.resolve('finished fetching github data');
+        this.deferred.resolve(this.data);
     },
 
     _render: function(repos) {
@@ -193,29 +217,27 @@ var github = {
         }
 
         for(var i = 0; i < repos.length && i < 5; i++) {
-            data.items.push({ title: repos[i].name, description: repos[i].description});
+            data.items.push({ link: repos[i].url, title: repos[i].name, description: repos[i].description});
+            console.log(repos[i]);
         }
 
         return data;
     }
 };
 
-// if(githubInfo.data('github-user')) {
+
+    
     var githubPromise = github.showRepos({
         user: 'kjellski',
         count: 10,
         skip_forks: true
     });
 
-    $.when(githubPromise).then(function (msg) {
-      console.log(msg);
-      console.log(github.data);
-    });
+    bindElementToAtopOpening('#github-social', loadGithubData);
 
-    // bindElementToAtopOpening('#github-social', promise);
-// }
 // bindElementToAtopOpening('#twitter-social', twitter_data);
 // bindElementToAtopOpening('#coderwall-social', coderwall_data);
+
 
 // // all credits go here: http://web.enavu.com/demos/carousel.html
 // $(document).ready(function() {

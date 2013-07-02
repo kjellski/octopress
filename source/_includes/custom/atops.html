@@ -1,10 +1,18 @@
 <script src="{{ root_url }}/javascripts/libs/handlebars.js"></script>
 <div id="atop-content">
-    <div class="loader"><img src="images/ajax-loader.gif"></div>
 </div>
 
 {% raw %} 
-<script id="atopcontent-template" type="text/x-handlebars-template">
+<script id="atop-loading-template" type="text/x-handlebars-template">
+    <section id="{{name}}-atop-id" class="atops-section">
+        <div class="loader"><img src="images/ajax-loader.gif"></div>
+    </section>
+</script>
+{% endraw %}
+
+
+{% raw %} 
+<script id="atop-content-template" type="text/x-handlebars-template">
     <section id="{{name}}-atop-id" class="atops-section">
         {{#each items}}
             <div class="atop-item">
